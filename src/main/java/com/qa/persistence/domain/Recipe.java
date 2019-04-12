@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Movie {
+public class Recipe {
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
@@ -16,11 +16,11 @@ public class Movie {
 	private String title;
 	private String ageRating;
 
-	public Movie() {
+	public Recipe() {
 
 	}
 
-	public Movie(String title, String ageRating) {
+	public Recipe(String title, String ageRating) {
 		this.title = title;
 		this.ageRating = ageRating;
 	}

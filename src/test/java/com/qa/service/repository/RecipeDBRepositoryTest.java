@@ -16,15 +16,15 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.qa.persistence.domain.Movie;
-import com.qa.persistence.repository.MovieDBRepository;
+import com.qa.persistence.domain.Recipe;
+import com.qa.persistence.repository.RecipeDBRepository;
 import com.qa.util.JSONUtil;
 
 @RunWith(MockitoJUnitRunner.class)
-public class MovieDBRepositoryTest {
+public class RecipeDBRepositoryTest {
 
 	@InjectMocks
-	private MovieDBRepository repo;
+	private RecipeDBRepository repo;
 
 	@Mock
 	private EntityManager manager;
@@ -47,36 +47,36 @@ public class MovieDBRepositoryTest {
 	}
 
 	@Test
-	public void testGetAllMovies() {
+	public void testGetAllRecipe() {
 		Mockito.when(manager.createQuery(Mockito.anyString())).thenReturn(query);
-		List<Movie> movies = new ArrayList<Movie>();
-		movies.add(new Movie("Alien", "15"));
-		Mockito.when(query.getResultList()).thenReturn(movies);
-		System.out.println(repo.getAllMovies());
-		Assert.assertEquals(MOCK_DATA_ARRAY, repo.getAllMovies());
+		List<Recipe> recipe = new ArrayList<Recipe>();
+		recipe.add(new Recipe("Alien", "15"));
+		Mockito.when(query.getResultList()).thenReturn(recipe);
+		System.out.println(repo.getAllRecipe());
+		Assert.assertEquals(MOCK_DATA_ARRAY, repo.getAllRecipe());
 	}
 
 	@Test
-	public void testCyclemovies() {
+	public void testCycleRecipe() {
 
 		Mockito.when(manager.createQuery(Mockito.anyString())).thenReturn(query);
-		List<Movie> movies = new ArrayList<Movie>();
-		movies.add(new Movie("Alien", "15"));
-		Mockito.when(query.getResultList()).thenReturn(movies);
-		Assert.assertEquals(1, repo.cycleMovies("Alien"));
+		List<Recipe> recipe = new ArrayList<Recipe>();
+		recipe.add(new Recipe("Alien", "15"));
+		Mockito.when(query.getResultList()).thenReturn(recipe);
+		Assert.assertEquals(1, repo.cycleRecipe("Alien"));
 
 	}
 
 	@Test
-	public void testCreateMovie() {
-		String reply = repo.createMovie(MOCK_OBJECT);
-		Assert.assertEquals(reply, "{\"message\": \"movie has been sucessfully added\"}");
+	public void testCreateRecipe() {
+		String reply = repo.createRecipe(MOCK_OBJECT);
+		Assert.assertEquals(reply, "{\"message\": \"recipe has been sucessfully added\"}");
 	}
 
 	@Test
-	public void testDeleteMovie() {
-		String reply = repo.deleteMovie(1L);
-		Assert.assertEquals(reply, "{\"message\": \"movie sucessfully deleted\"}");
+	public void testDeleteRecipe() {
+		String reply = repo.deleteRecipe(1L);
+		Assert.assertEquals(reply, "{\"message\": \"recipe sucessfully deleted\"}");
 	}
 
 }
